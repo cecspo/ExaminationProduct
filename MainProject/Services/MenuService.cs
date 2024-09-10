@@ -3,17 +3,38 @@
 namespace MainProject.Services;
 
 public static class MenuService
-{
+{        
     private static void AddProductMenu()
     {
-        var product = new GetProduct();
+        List<GetProduct> products = [];
 
+        var product = new GetProduct();
+        
         Console.Clear();
+        Console.WriteLine("-- ADD PRODUCT --");
+
         Console.WriteLine("Please write your products name: ");
         product.ProductName = Console.ReadLine() ?? "";
 
         Console.WriteLine("Please enter the price of the product");
         product.Price = Console.ReadLine() ?? "";
+
+        product.Add(Console.ReadLine());
+    }
+
+    private static string ListProductMenu()
+    {
+        Console.WriteLine("-- LIST OF PRODUCTS --");
+        try
+        {
+            foreach (var product in GetProduct)
+                Console.WriteLine($"Product name: {product.ProductName} \n Product price: {product.Price} \n Product ID: {product.Id}");
+        }
+        catch
+        { 
+
+        }
+        return;
     }
 
     private static void ExitChoiceMenu()
@@ -40,6 +61,7 @@ public static class MenuService
             switch (choice)
             {
                 case 1:
+                    AddProductMenu();
                     Console.ReadLine();
                     break;
                     
